@@ -54,7 +54,7 @@ namespace Lr8
 
 
             SetHMatrix();
-            getXnMesaage();
+            GetXnMesaage();
 
          //   goHamingCode();
 
@@ -63,16 +63,16 @@ namespace Lr8
 
 
 
-        public void goHamingCode()
+        public void GoHamingCode()
         {
             PrintG();
             PrintH();
 
             Print(Xn);
 
-            generirtError(errorN);
+            GenerirtError(errorN);
 
-            decoding();
+            Decoding();
         }
         protected void PrintH()
         {
@@ -92,16 +92,20 @@ namespace Lr8
         {
             Print(Yn);
         }
-        public void decoding()
+        public void Decoding()
         {
 
-            getXrSymbol(Yn, ref Yr);
-            getS();
-            setEinNull();
-            searchError();
+            GetXrSymbol(Yn, ref Yr);
+            GetS();
+            SetEinNull();
+            SearchError();
             CorrectError();
         }
-        protected void getS()
+
+        /// <summary>
+        /// Получаем синдром
+        /// </summary>
+        protected void GetS()
         {
 
             for (int i = 0; i < rN; i++)
@@ -110,12 +114,12 @@ namespace Lr8
             }
         }
 
-        protected void setEinNull()
+        protected void SetEinNull()
         {
             for (int i = 0; i < N; i++)
                 E.Add(0);
         }
-        protected void searchError()
+        protected void SearchError()
         {
             int iNull = 0;
             int iSovp = 0;
@@ -151,9 +155,9 @@ namespace Lr8
             SetIMatrix();
             SetPMatrix();
         }
-        void getXnMesaage()
+        void GetXnMesaage()
         {
-            getXrSymbol(Xn, ref Xr);
+            GetXrSymbol(Xn, ref Xr);
 
             foreach (int a in Xr.AsEnumerable())
             {
@@ -161,7 +165,7 @@ namespace Lr8
             }
         }
 
-        protected void getXrSymbol(List<int> Xk, ref List<int> Xr)
+        protected void GetXrSymbol(List<int> Xk, ref List<int> Xr)
         {
 
             int x;
@@ -284,7 +288,7 @@ namespace Lr8
                 Console.Write(a);
             Console.WriteLine("");
         }
-        void generirtError(int nE)
+        void GenerirtError(int nE)
         {
             int i = 0;
             Random r = new Random();

@@ -71,7 +71,7 @@ namespace Lr8
            for (int i = 0; i < length; i++)
            {
                arrayHem[i].Yn = codeArray[i];
-               arrayHem[i].decoding();
+               arrayHem[i].Decoding();
                codeArray[i] = arrayHem[i].Yn;
                nXr = arrayHem[i].Yr.Count;
            }
