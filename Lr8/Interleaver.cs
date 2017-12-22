@@ -27,7 +27,7 @@ namespace Lr8
            countError = cN;
 
             messageArray = new List<int>();
-            getIntArrayFromString(code,ref messageArray);
+            GetIntArrayFromString(code,ref messageArray);
             length = code.Count();
          //   length = code.Count() / 4;
            codeArray=new List<int>[length];
@@ -42,32 +42,32 @@ namespace Lr8
 
             Print(codeArray,length);
             newCodeArray = new List<int>[column];
-            interleaving(codeArray, length,newCodeArray,column);
+            Interleaving(codeArray, length,newCodeArray,column);
 
             Console.WriteLine("");
 
             Print(newCodeArray,column);
 
 
-            generirtError();
+            GenerirtError();
             Console.WriteLine("");
 
             Print(newCodeArray, column);
 
             Console.WriteLine("");
-            interleaving(newCodeArray, column, codeArray, length);
+            Interleaving(newCodeArray, column, codeArray, length);
             Print(codeArray, length);
 
-            correctErrors();
+            CorrectErrors();
 
             Console.WriteLine("");
             Print(codeArray, length);
 
-            convertToWord();
+            ConvertToWord();
 
         }
 
-       void correctErrors() {
+       void CorrectErrors() {
            for (int i = 0; i < length; i++)
            {
                arrayHem[i].Yn = codeArray[i];
@@ -76,7 +76,7 @@ namespace Lr8
                nXr = arrayHem[i].Yr.Count;
            }
        }
-       void interleaving(List<int>[] matrix, int length, List<int>[] trmatrix, int column) {
+       void Interleaving(List<int>[] matrix, int length, List<int>[] trmatrix, int column) {
            int k = 0;
            for (int i = 0; i < column; i++)
            {
@@ -105,7 +105,7 @@ namespace Lr8
            }
        }
 
-       void generirtError() {
+       void GenerirtError() {
            Random r = new Random();
            int a = r.Next(0, column-1);
            Console.WriteLine("\nномер строки, в которой генерируются ошибки "+a+"\n");
@@ -126,7 +126,7 @@ namespace Lr8
         {
            for (int i = 0; i < length; i++)
            {
-               Hemming a = new Hemming(getStringFromArrayBit(getArrayBit( messageArray[i])),0);
+               Hemming a = new Hemming(GetStringFromArrayBit(GetArrayBit( messageArray[i])),0);
                arrayHem.Add(a);
                codeArray[i] = new List<int>();
                foreach (int b in a.Xn)
@@ -135,11 +135,11 @@ namespace Lr8
            }
         }
 
-       bool[] getArrayBit(int a) {
+       bool[] GetArrayBit(int a) {
            bool[] b = new BitArray(Decimal.GetBits(a)).Cast<bool>().ToArray();
            return b;
        }
-       int getIntFromBoolArray(bool[]arr) {
+       int GetIntFromBoolArray(bool[]arr) {
            bool[] newarr = new bool[arr.Count() - nXr];
            for (int i = 0; i < arr.Count()-nXr; i++)
            {
@@ -152,12 +152,12 @@ namespace Lr8
            int a=Convert.ToInt32(data[0]);
            return a;
        }
-        void convertToWord(){
+        void ConvertToWord(){
             int w;
             for (int i = 0; i < length; i++)
 			{
                // w=getIntFromBoolArray(getBoolArrayFromListInt(codeArray[i]));
-                bool[] arb = getBoolArrayFromListInt(codeArray[i]);
+                bool[] arb = GetBoolArrayFromListInt(codeArray[i]);
                 byte[] arbyte=new byte[arb.Count()-nXr];
                 for (int j = 0;j < arb.Count()-nXr; j++)
                 {
@@ -183,7 +183,7 @@ namespace Lr8
             }
             return Convert.ToInt32(str,2);
         }
-       bool[] getBoolArrayFromListInt(List<int> arr) { 
+       bool[] GetBoolArrayFromListInt(List<int> arr) { 
             bool[] b=new bool[arr.Count];
             for (int i = 0; i < arr.Count; i++)
             {
@@ -194,7 +194,7 @@ namespace Lr8
             }
             return b;
        }
-       string getStringFromArrayBit(bool[] b) {
+       string GetStringFromArrayBit(bool[] b) {
            string str = "";
           int k= b.ToList().LastIndexOf(true);
           for (int i = 0; i <= k; i++)
@@ -207,7 +207,7 @@ namespace Lr8
         /// <summary>
         /// Получаем массив интов из строки при получении кодов в ASCII
         /// </summary>
-        void getIntArrayFromString(string arr, ref List<int> X)
+        void GetIntArrayFromString(string arr, ref List<int> X)
         {
            
             foreach (char a in arr.AsEnumerable())
